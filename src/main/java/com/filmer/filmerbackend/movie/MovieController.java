@@ -1,4 +1,4 @@
-package com.example.filmerbackend.movie;
+package com.filmer.filmerbackend.movie;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

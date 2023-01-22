@@ -1,4 +1,4 @@
-package com.example.filmerbackend;
+package com.filmer.filmerbackend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

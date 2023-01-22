@@ -1,4 +1,4 @@
-package com.example.filmerbackend.movie;
+package com.filmer.filmerbackend.movie;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

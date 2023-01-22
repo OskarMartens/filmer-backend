@@ -1,4 +1,4 @@
-package com.example.filmerbackend;
+package com.filmer.filmerbackend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

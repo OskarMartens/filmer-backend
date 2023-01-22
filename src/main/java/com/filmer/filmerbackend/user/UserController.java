@@ -1,4 +1,4 @@
-package com.example.filmerbackend.user;
+package com.filmer.filmerbackend.user;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.example.filmerbackend.movie;
+package com.filmer.filmerbackend.movie;
 
 
 import jakarta.persistence.*;
