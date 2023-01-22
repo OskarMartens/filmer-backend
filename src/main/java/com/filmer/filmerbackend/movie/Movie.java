@@ -1,7 +1,11 @@
 package com.filmer.filmerbackend.movie;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "movies")
@@ -33,4 +37,13 @@ public class Movie {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    @ManyToMany(fetch = FetchType.LAZY,
+        cascade = {
+                CascadeType.PERSIST,
+                CascadeType.MERGE
+        })
+    @JsonIgnore
+    private Set<Movie> movies = new HashSet<>();
+
 }

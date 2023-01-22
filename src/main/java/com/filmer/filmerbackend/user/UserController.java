@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -22,7 +24,13 @@ public class UserController {
     }
 
     @GetMapping("/{name}")
-    public ResponseEntity<User> getUserByName(@PathVariable String name){
+    public ResponseEntity<Optional<User>> getUserByName(@PathVariable String name){
         return userService.findUserByName(name);
+    }
+
+    @PutMapping("/{userId}/movie/{movieId}")
+    public ResponseEntity<User> likeMovie(@PathVariable Long userId,
+                                          @PathVariable Long movieId){
+        return userService.likeMovie(userId, movieId);
     }
 }
