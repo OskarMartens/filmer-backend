@@ -1,5 +1,7 @@
-package com.filmer.filmerbackend.movie;
+package com.filmer.filmerbackend.controller;
 
+import com.filmer.filmerbackend.model.Movie;
+import com.filmer.filmerbackend.serviceimpl.MovieServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

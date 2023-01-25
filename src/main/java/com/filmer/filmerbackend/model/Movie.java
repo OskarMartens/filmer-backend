@@ -1,14 +1,14 @@
-package com.filmer.filmerbackend.movie;
+package com.filmer.filmerbackend.model;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.filmer.filmerbackend.model.User;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "movies")
+@Table(name = "movie")
 public class Movie {
 
     @Id
@@ -19,10 +19,11 @@ public class Movie {
     @Column
     private String title;
 
+
     public Movie() {
     }
 
-    public Movie(String title) {
+    public Movie( String title) {
         this.title = title;
     }
 
@@ -38,12 +39,13 @@ public class Movie {
         this.title = title;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY,
-        cascade = {
-                CascadeType.PERSIST,
-                CascadeType.MERGE
-        })
-    @JsonIgnore
-    private Set<Movie> movies = new HashSet<>();
+
+    //    @ManyToMany(fetch = FetchType.LAZY,
+//        cascade = {
+//                CascadeType.PERSIST,
+//                CascadeType.MERGE
+//        }, mappedBy = "movies")
+//    @JsonIgnore
+//    private Set<Movie> movies = new HashSet<>();
 
 }
