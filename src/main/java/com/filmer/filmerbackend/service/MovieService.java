@@ -1,5 +1,6 @@
-package com.filmer.filmerbackend.movie;
+package com.filmer.filmerbackend.service;
 
+import com.filmer.filmerbackend.model.Movie;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;

@@ -1,5 +1,8 @@
-package com.filmer.filmerbackend.movie;
+package com.filmer.filmerbackend.serviceimpl;
 
+import com.filmer.filmerbackend.model.Movie;
+import com.filmer.filmerbackend.repositories.MovieRepository;
+import com.filmer.filmerbackend.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
