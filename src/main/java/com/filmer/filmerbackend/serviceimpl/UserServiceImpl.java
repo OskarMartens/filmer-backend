@@ -1,5 +1,6 @@
 package com.filmer.filmerbackend.serviceimpl;
 
+import com.filmer.filmerbackend.dto.RatedMovieDTO;
 import com.filmer.filmerbackend.dto.UserDTO;
 import com.filmer.filmerbackend.dto.UserMoviesDTO;
 import com.filmer.filmerbackend.model.User;
@@ -14,8 +15,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
+
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -24,7 +27,9 @@ public class UserServiceImpl implements UserService {
     private final MovieRepository movieRepository;
     private final UserMoviesRepository userMoviesRepository;
 
-    public UserServiceImpl(UserRepository userRepository, MovieRepository movieRepository, UserMoviesRepository userMoviesRepository) {
+    public UserServiceImpl(UserRepository userRepository,
+                           MovieRepository movieRepository,
+                           UserMoviesRepository userMoviesRepository) {
         this.userRepository = userRepository;
         this.movieRepository = movieRepository;
         this.userMoviesRepository = userMoviesRepository;
@@ -42,14 +47,24 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseEntity<UserDTO> findUserByName(String name) {
-        UserDTO userDTO = userRepository.
-                findUserAndMoviesByName(name).
-                stream().findFirst().orElse(null);
+        UserDTO userDTO = new UserDTO();
+        User user = userRepository.findByName(name).orElseThrow(() ->
+                new IllegalArgumentException("User not found with name: " + name));
 
-        if(userDTO == null) {
-            throw new IllegalStateException("username is not present");
+        Set<UserMovies> userMovies = user.getRatedMovies();
+        Set<RatedMovieDTO> ratedMovieDTOS = new HashSet<>();
+
+        for (UserMovies userMovie: userMovies) {
+            Long movieId = userMovie.getId().getMovieId();
+            Movie movie = movieRepository.findById(movieId).orElseThrow(() ->
+                    new IllegalArgumentException("Movie not found with id: " + movieId));
+            ratedMovieDTOS.add(new RatedMovieDTO(movieId, movie.getTitle(), userMovie.getLikes()));
         }
-        return new ResponseEntity<>(userDTO, HttpStatus.OK);
+        userDTO.setUserId(user.getId());
+        userDTO.setName(user.getName());
+        userDTO.setRatedMovies(ratedMovieDTOS);
+
+        return ResponseEntity.ok().body(userDTO);
     }
 
     @Override
@@ -64,7 +79,7 @@ public class UserServiceImpl implements UserService {
         userMovies.setId(new UserMoviesId(user.getId(), movie.getId()));
         userMovies.setUser(user);
         userMovies.setMovie(movie);
-        userMovies.setLikesOrNot(userMoviesDTO.isLikesOrNot());
+        userMovies.setLikes(userMoviesDTO.isLikes());
         userMoviesRepository.save(userMovies);
 
         return new ResponseEntity<>("Movie rated successfully", HttpStatus.OK);

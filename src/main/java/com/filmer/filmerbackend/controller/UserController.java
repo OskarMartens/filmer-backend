@@ -36,7 +36,7 @@ public class UserController {
     @PostMapping("/like-movie")
     public ResponseEntity<String> likeMovie(@RequestBody UserMoviesDTO userMoviesDTO){
         userService.likeMovie(userMoviesDTO);
-        return new ResponseEntity<>("Movie successfully liked", HttpStatus.OK);
+        return new ResponseEntity<>("Movie successfully rated", HttpStatus.OK);
 
     }
 }

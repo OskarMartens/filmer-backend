@@ -21,16 +21,17 @@ public class UserMovies {
     @JoinColumn(name = "movie_id")
     private Movie movie;
 
-    private boolean likesOrNot;
+    @Column
+    private boolean likes;
 
     public UserMovies() {
     }
 
-    public UserMovies(User user, Movie movie, boolean likesOrNot) {
+    public UserMovies(User user, Movie movie, boolean likes) {
         this.id = new UserMoviesId(user.getId(), movie.getId());
         this.user = user;
         this.movie = movie;
-        this.likesOrNot = likesOrNot;
+        this.likes = likes;
     }
 
     public UserMoviesId getId() {
@@ -57,11 +58,11 @@ public class UserMovies {
         this.movie = movie;
     }
 
-    public boolean getLikesOrNot() {
-        return likesOrNot;
+    public boolean getLikes() {
+        return likes;
     }
 
-    public void setLikesOrNot(boolean likesOrNot) {
-        this.likesOrNot = likesOrNot;
+    public void setLikes(boolean likes) {
+        this.likes = likes;
     }
 }

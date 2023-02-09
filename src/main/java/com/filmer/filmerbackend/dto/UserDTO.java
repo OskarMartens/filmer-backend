@@ -5,29 +5,49 @@ import com.filmer.filmerbackend.model.User;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
-
+// This class is for GetMapping
 public class UserDTO {
 
-    private Long userId;
+    private Long id;
     private String name;
-    private Set<UserMoviesDTO> ratedMovies;
+    private Set<RatedMovieDTO> ratedMovies;
 
-    public UserDTO(Long userId, String name, Set<UserMoviesDTO> ratedMovies) {
-        this.userId = userId;
+
+    public UserDTO(Long id, String name, Set<RatedMovieDTO> ratedMovies) {
+        this.id = id;
         this.name = name;
-        this.ratedMovies = ratedMovies;
+        this.ratedMovies = new HashSet<>();
     }
 
-    public Long getUserId() {
-        return userId;
+    public UserDTO() {
+    }
+
+    public UserDTO(Long id, String name) {
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
         return name;
     }
 
-    public Set<UserMoviesDTO> getRatedMovies() {
+    public Set<RatedMovieDTO> getRatedMovies() {
         return ratedMovies;
+    }
+
+    public void setUserId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setRatedMovies(Set<RatedMovieDTO> ratedMovies) {
+        this.ratedMovies = ratedMovies;
     }
 }

@@ -64,26 +64,4 @@ public class User {
         this.ratedMovies = ratedMovies;
     }
 
-
-    //    @ManyToMany(fetch = FetchType.LAZY,
-//        cascade = {
-//                CascadeType.PERSIST,
-//                CascadeType.MERGE
-//        })
-//    @JoinTable(name = "user_movies",
-//        joinColumns = @JoinColumn(name = "user_id"),
-//        inverseJoinColumns = @JoinColumn(name = "movie_id"))
-//    private Set<Movie> likedMovies = new HashSet<>();
-
-//    public User(Set<Movie> likedMovies) {
-//        this.likedMovies = likedMovies;
-//    }
-//
-//    public Set<Movie> getLikedMovies() {
-//        return likedMovies;
-//    }
-//
-//    public void setLikedMovies(Set<Movie> likedMovies) {
-//        this.likedMovies = likedMovies;
-//    }
 }

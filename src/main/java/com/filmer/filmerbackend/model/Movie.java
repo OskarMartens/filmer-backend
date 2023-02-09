@@ -23,7 +23,7 @@ public class Movie {
     public Movie() {
     }
 
-    public Movie( String title) {
+    public Movie(String title) {
         this.title = title;
     }
 
@@ -38,14 +38,5 @@ public class Movie {
     public void setTitle(String title) {
         this.title = title;
     }
-
-
-    //    @ManyToMany(fetch = FetchType.LAZY,
-//        cascade = {
-//                CascadeType.PERSIST,
-//                CascadeType.MERGE
-//        }, mappedBy = "movies")
-//    @JsonIgnore
-//    private Set<Movie> movies = new HashSet<>();
 
 }

@@ -7,14 +7,14 @@ public class UserMoviesDTO {
 
     private Long userId;
     private Long movieId;
-    private boolean likesOrNot;
+    private boolean likes;
 
     public UserMoviesDTO() {}
 
     public UserMoviesDTO(UserMovies userMovies) {
         this.userId = userMovies.getUser().getId();
         this.movieId = userMovies.getMovie().getId();
-        this.likesOrNot = userMovies.getLikesOrNot();
+        this.likes = userMovies.getLikes();
     }
 
     public Long getUserId() {
@@ -33,12 +33,12 @@ public class UserMoviesDTO {
         this.movieId = movieId;
     }
 
-    public boolean isLikesOrNot() {
-        return likesOrNot;
+    public boolean isLikes() {
+        return likes;
     }
 
-    public void setLikesOrNot(boolean likesOrNot) {
-        this.likesOrNot = likesOrNot;
+    public void setLikes(boolean likesOrNot) {
+        this.likes = likesOrNot;
     }
 
 }
