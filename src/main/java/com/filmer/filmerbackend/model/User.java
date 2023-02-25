@@ -22,13 +22,6 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonManagedReference
     private Set<UserMovies> ratedMovies;
-//    @ManyToMany(cascade = {
-//            CascadeType.PERSIST,
-//            CascadeType.MERGE})
-//    @JoinTable(name = "user_movies",
-//            joinColumns = @JoinColumn(name = "user_id"),
-//            inverseJoinColumns = @JoinColumn(name = "movie_id"))
-//    private Set<Movie> ratedMovies = new HashSet<>();
 
 //    Constructor----------------------
     public User() {}

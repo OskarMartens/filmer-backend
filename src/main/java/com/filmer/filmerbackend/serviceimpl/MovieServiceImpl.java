@@ -2,6 +2,7 @@ package com.filmer.filmerbackend.serviceimpl;
 
 import com.filmer.filmerbackend.model.Movie;
 import com.filmer.filmerbackend.repositories.MovieRepository;
+import com.filmer.filmerbackend.repositories.UserMoviesRepository;
 import com.filmer.filmerbackend.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,15 +11,18 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class MovieServiceImpl implements MovieService {
 
     private final MovieRepository movieRepository;
+    private final UserMoviesRepository userMoviesRepository;
 
     @Autowired
-    public MovieServiceImpl(MovieRepository movieRepository){
+    public MovieServiceImpl(MovieRepository movieRepository, UserMoviesRepository userMoviesRepository){
         this.movieRepository = movieRepository;
+        this.userMoviesRepository = userMoviesRepository;
     }
 
     @Override
@@ -38,4 +42,13 @@ public class MovieServiceImpl implements MovieService {
         Movie _movie = movieRepository.findByTitle(title);
         return new ResponseEntity<>(_movie, HttpStatus.OK);
     }
+
+    @Override
+    public ResponseEntity<List<Movie>> findAllUnratedMovies(Long userId) {
+        List<Long> unratedMovieIds = userMoviesRepository.findUnratedMovieIdsByUserId(userId);
+        List<Movie> unratedMovies = movieRepository.findAllById(unratedMovieIds);
+        return ResponseEntity.ok(unratedMovies);
+    }
+
+
 }

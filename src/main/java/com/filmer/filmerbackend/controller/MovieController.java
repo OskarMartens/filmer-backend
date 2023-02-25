@@ -33,4 +33,10 @@ public class MovieController {
     public ResponseEntity<Movie> findMovieByTitle(@PathVariable String title){
         return movieService.findMovieByTitle(title);
     }
+
+    @GetMapping("/{userId}/unrated-movies")
+    public ResponseEntity<List<Movie>> getUnratedMovies(@PathVariable Long userId) {
+        return movieService.findAllUnratedMovies(userId);
+    }
+
 }

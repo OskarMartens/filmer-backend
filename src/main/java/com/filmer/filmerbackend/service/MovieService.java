@@ -10,4 +10,5 @@ public interface MovieService {
     ResponseEntity<Movie> addMovie(Movie movie);
     ResponseEntity<List<Movie>> findAllMovies();
     ResponseEntity<Movie> findMovieByTitle(String title);
+    ResponseEntity<List<Movie>> findAllUnratedMovies(Long userId);
 }

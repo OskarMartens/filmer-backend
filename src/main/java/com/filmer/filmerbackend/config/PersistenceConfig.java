@@ -7,3 +7,20 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories(basePackages = {"com.filmer.filmerbackend.repositories"})
 public class PersistenceConfig {
 }
+
+/*
+
+.authorizeHttpRequests()
+.requestMatchers("/", "/login", "/error", "rest/**", "/register", "/static/**").permitAll()
+.request("/admin").hasRole("ADMIN")
+.authenticated()
+.and()
+.formLogin(
+    formLogin -> {
+        formLogin
+            .loginPage("/login");
+    }
+   )
+
+
+ */
