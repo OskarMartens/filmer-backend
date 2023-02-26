@@ -10,8 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -24,19 +22,18 @@ public class UserController {
     }
 
     @PostMapping()
-    public ResponseEntity<String> saveUser(@RequestBody User user){
+    public ResponseEntity<String> saveUser(@RequestBody User user) {
         return userService.saveUser(user);
     }
 
     @GetMapping("/{name}")
-    public ResponseEntity<UserDTO> getUserByName(@PathVariable String name){
+    public ResponseEntity<UserDTO> getUserByName(@PathVariable String name) {
         return userService.findUserByName(name);
     }
 
     @PostMapping("/like-movie")
-    public ResponseEntity<String> likeMovie(@RequestBody UserMoviesDTO userMoviesDTO){
+    public ResponseEntity<String> likeMovie(@RequestBody UserMoviesDTO userMoviesDTO) {
         userService.likeMovie(userMoviesDTO);
         return new ResponseEntity<>("Movie successfully rated", HttpStatus.OK);
-
     }
 }

@@ -1,11 +1,7 @@
 package com.filmer.filmerbackend.dto;
 
-import com.filmer.filmerbackend.model.Movie;
-import com.filmer.filmerbackend.model.User;
-
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 // This class is for GetMapping
 public class UserDTO {

@@ -9,7 +9,8 @@ public class UserMoviesDTO {
     private Long movieId;
     private boolean likes;
 
-    public UserMoviesDTO() {}
+    public UserMoviesDTO() {
+    }
 
     public UserMoviesDTO(UserMovies userMovies) {
         this.userId = userMovies.getUser().getId();
@@ -40,6 +41,5 @@ public class UserMoviesDTO {
     public void setLikes(boolean likesOrNot) {
         this.likes = likesOrNot;
     }
-
 }
 

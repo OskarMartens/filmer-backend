@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class MovieServiceImpl implements MovieService {
@@ -20,7 +19,7 @@ public class MovieServiceImpl implements MovieService {
     private final UserMoviesRepository userMoviesRepository;
 
     @Autowired
-    public MovieServiceImpl(MovieRepository movieRepository, UserMoviesRepository userMoviesRepository){
+    public MovieServiceImpl(MovieRepository movieRepository, UserMoviesRepository userMoviesRepository) {
         this.movieRepository = movieRepository;
         this.userMoviesRepository = userMoviesRepository;
     }

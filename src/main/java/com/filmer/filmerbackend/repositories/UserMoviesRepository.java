@@ -12,6 +12,10 @@ import java.util.List;
 @Repository
 public interface UserMoviesRepository extends JpaRepository<UserMovies, UserMoviesId> {
 
-    @Query("SELECT m.id FROM Movie m WHERE m.id NOT IN (SELECT um.movie.id FROM UserMovies um WHERE um.user.id = :userId)")
+    @Query(
+            " SELECT m.id" +
+            " FROM Movie m WHERE m.id" +
+            " NOT IN (SELECT um.movie.id FROM UserMovies um WHERE um.user.id = :userId)"
+    )
     List<Long> findUnratedMovieIdsByUserId(@Param("userId") Long userId);
 }

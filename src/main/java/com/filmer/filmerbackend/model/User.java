@@ -4,7 +4,6 @@ package com.filmer.filmerbackend.model;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -13,7 +12,7 @@ public class User {
 
     @Id
     @Column
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
@@ -23,20 +22,18 @@ public class User {
     @JsonManagedReference
     private Set<UserMovies> ratedMovies;
 
-//    Constructor----------------------
-    public User() {}
+    //    Constructor----------------------
+    public User() {
+    }
 
     public User(String name) {
         this.name = name;
     }
 
-
     //    Getters and setters------------------
     public Long getId() {
         return id;
     }
-
-//    public Long setId(Long id){this.id = id}
 
     public String getName() {
         return name;
@@ -47,7 +44,6 @@ public class User {
     }
 
 //-------------------------------------------------
-
 
     public Set<UserMovies> getRatedMovies() {
         return ratedMovies;

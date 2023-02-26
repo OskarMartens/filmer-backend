@@ -3,14 +3,15 @@ package com.filmer.filmerbackend.serviceimpl;
 import com.filmer.filmerbackend.dto.RatedMovieDTO;
 import com.filmer.filmerbackend.dto.UserDTO;
 import com.filmer.filmerbackend.dto.UserMoviesDTO;
-import com.filmer.filmerbackend.model.User;
 import com.filmer.filmerbackend.model.Movie;
+import com.filmer.filmerbackend.model.User;
+import com.filmer.filmerbackend.model.UserMovies;
 import com.filmer.filmerbackend.model.UserMoviesId;
 import com.filmer.filmerbackend.repositories.MovieRepository;
-import com.filmer.filmerbackend.model.UserMovies;
 import com.filmer.filmerbackend.repositories.UserMoviesRepository;
-import com.filmer.filmerbackend.service.UserService;
 import com.filmer.filmerbackend.repositories.UserRepository;
+import com.filmer.filmerbackend.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,7 @@ public class UserServiceImpl implements UserService {
     private final MovieRepository movieRepository;
     private final UserMoviesRepository userMoviesRepository;
 
+    @Autowired
     public UserServiceImpl(UserRepository userRepository,
                            MovieRepository movieRepository,
                            UserMoviesRepository userMoviesRepository) {
@@ -38,7 +40,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public ResponseEntity<String> saveUser(User user) {
         Optional<User> existingUser = userRepository.findByName(user.getName());
-        if(existingUser.isPresent()) {
+        if (existingUser.isPresent()) {
             throw new IllegalStateException("username is already taken");
         }
         User _user = userRepository.save(new User(user.getName()));
@@ -54,7 +56,7 @@ public class UserServiceImpl implements UserService {
         Set<UserMovies> userMovies = user.getRatedMovies();
         Set<RatedMovieDTO> ratedMovieDTOS = new HashSet<>();
 
-        for (UserMovies userMovie: userMovies) {
+        for (UserMovies userMovie : userMovies) {
             Long movieId = userMovie.getId().getMovieId();
             Movie movie = movieRepository.findById(movieId).orElseThrow(() ->
                     new IllegalArgumentException("Movie not found with id: " + movieId));

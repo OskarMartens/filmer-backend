@@ -1,11 +1,7 @@
 package com.filmer.filmerbackend.model;
 
 
-import com.filmer.filmerbackend.model.User;
 import jakarta.persistence.*;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "movie")
@@ -13,7 +9,7 @@ public class Movie {
 
     @Id
     @Column
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column

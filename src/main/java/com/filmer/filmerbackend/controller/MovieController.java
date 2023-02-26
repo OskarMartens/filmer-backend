@@ -20,17 +20,17 @@ public class MovieController {
     }
 
     @PostMapping()
-    public ResponseEntity<Movie> addMovie(@RequestBody Movie movie){
+    public ResponseEntity<Movie> addMovie(@RequestBody Movie movie) {
         return movieService.addMovie(movie);
     }
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<Movie>> getAllMovies(){
+    public ResponseEntity<List<Movie>> getAllMovies() {
         return movieService.findAllMovies();
     }
 
     @GetMapping("/{title}")
-    public ResponseEntity<Movie> findMovieByTitle(@PathVariable String title){
+    public ResponseEntity<Movie> findMovieByTitle(@PathVariable String title) {
         return movieService.findMovieByTitle(title);
     }
 
